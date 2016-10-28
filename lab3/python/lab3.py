@@ -1,6 +1,7 @@
 import math
 import pylab
 from matplotlib import mlab
+
 pi = 3.14
 while (True):
     run = input("Вычислим функцию? (yes/no)")
@@ -29,16 +30,16 @@ while (True):
                 x += step
                 i += 1
             pylab.plot(xlist, ylist)
-
             pylab.show()
         if v == "Y":
             while i < start_f:
-                xlist = mlab.frange(nach_x, end_x, step)
-                ylist = [-7 * pow(a, 2) + 40 * a * x + 63 * pow(x, 2) + 1 for x in xlist]
-                Y=-7 * pow(a, 2) + 40 * a * x + 63 * pow(x, 2) + 1
+                xlist.append(x)
+                xlist.append(Y)
+                Y = -7 * pow(a, 2) + 40 * a * x + 63 * pow(x, 2) + 1
                 print("Y =", Y)
+                x += step
+                i += 1
             pylab.plot(xlist, ylist)
-
             pylab.show()
         if v == "F":
             f_without_sin = int(
