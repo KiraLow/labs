@@ -2,8 +2,8 @@
 #include <math.h>
 int main()
 {
-    double G,F,Y,a,x;
-    const double pi=3.14;
+    double G,F,Y,a,x; /* 8 байт */
+    const float pi=3.14; /* 4 байт */
     printf("Введите x: \n");
     scanf ("%lf", &x);
 
