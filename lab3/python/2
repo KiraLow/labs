@@ -1,0 +1,59 @@
+import math
+import pylab
+from matplotlib import mlab
+
+pi = 3.14
+while (True):
+    run = input("Вычислим функцию? (yes/no)")
+    if run == "yes":
+        x1 = float(input("Введите первую границу значений x: "))
+        x2 = float(input("Введите вторую границу значений x: "))
+        a = float(input("Введите a: "))
+        step = float(input("Введите шаг: "))
+        v = str(input("Введите букву функции, которую xотите вычислить "))
+        diff = float(input("максимальная разница между функциями"))
+        rez = 0
+        F = 0
+        G = 0
+        Y = 0
+        i = 0
+        xlist = []
+        ylist = []
+        if v == "G":
+            x_mod = x1
+            while x_mod <= x2:
+                g_1 = -(8 * (12 * pow(a, 2) + 68 * a * x_mod + 63 * pow(x_mod, 2)))
+                g_2 = (4 * pow(a, 2) + a * x_mod - 5 * pow(x_mod, 2))
+                if (g_2 >= 0.0000001) and (g_2 <= -0.0000001):
+                    G = g_1 / g_2
+                    print("G = ", round(G, 4), " при x = ", x_mod)
+                    xlist.append(x_mod)
+                    ylist.append(G)
+                    x_mod += step
+                rez = int(-(8 * (12 * (a * a) + 68 * a * x_mod + 63 * (x_mod * x_mod))) / (4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod)))
+                if diff < (rez - G):
+                    step /= 2
+
+        if v == "Y":
+            while i < start_f:
+                xlist.append(x)
+                xlist.append(Y)
+                Y = -7 * pow(a, 2) + 40 * a * x + 63 * pow(x, 2) + 1
+                print("Y =", Y)
+                x += step
+                i += 1
+            pylab.plot(xlist, ylist)
+            pylab.show()
+        if v == "F":
+            f_without_sin = int(
+                pi * (40 * a ** 2 - 61 * a * x + 7 * x ** 2) / (pi * (40 * a ** 2 - 61 * a * x + 7 * x ** 2)))
+            if f_without_sin:
+                F = math.sin(f_without_sin)
+                print("F =", F)
+            else:
+                print('Не существует синуса к заданной функции')
+    if run == "no":
+        print("Ну и ладно c: ")
+        exit(0)
+    if run != "yes" and run != "no":
+        print("Что-то не пойму что ты написал, давай еще раз ")
