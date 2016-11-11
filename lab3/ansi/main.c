@@ -31,37 +31,19 @@ int main()
         printf("Введите разницу между функциями) \n");
         scanf("%lf", &razn);
 
-            switch (r) {
-                case 'G':
-                        while (x < x2) {
-                            y1 = -(8 * (12 * (a * a) + 68 * a * x + 63 * (x * x)));
-                            y2 = (4 * (a * a) + a * x - 5 * (x * x));
-                            if (y2 == 0.0) {
-                                printf("На ноль делить нельзя");
-                                return 0;
-                            } else {
-                                G = y1 / y2;
-                                printf("G = %.15lf \n", G);
-                                x += step;
-                                razn_rez = -(8 * (12 * (a * a) + 68 * a * x + 63 * (x * x))) /
-                                           (4 * (a * a) + a * x - 5 * (x * x));
-                                if (razn > (razn_rez - G)) {
-                                    step /= 2;
-                                    x += step;
-                                }
-                                if (razn < (razn_rez - G)) {
-                                    step *= 2;
-                                    x -= step;
-                                }
-                                else {
-                                    break;
-                                }
-                            }
-
-                        }
-
-
-                    break;
+           switch (r) {
+            case 'G':
+                for (x_mod=x; x_mod<=x2; x_mod+=step) {
+                    if (((4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod))>=0.0001) || ((4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod))<=-0.0001)) {
+                        G = -(8 * (12 * (a * a) + 68 * a * x_mod+ 63 * (x_mod * x_mod)))/(4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
+                        printf("%lf\n", G);
+                    }
+                    razn_rez = -(8 * (12 * (a * a) + 68 * a * x_mod+ 63 * (x_mod * x_mod)))/(4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
+                    if ((razn_rez-G)>razn){
+                        step /=2;
+                    }
+                }
+                break;
 
                 case 'F':
                     for(i = 0; i < start_f; ++i) {
