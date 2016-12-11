@@ -1,87 +1,109 @@
 #include <stdio.h>
 #include <math.h>
-
+#include <stdlib.h>
 
 int main()
 {
+    int run,kol_step,j=0;
     char r;
-    double G,F,Y,a,x,x2,run,y1,y2,step;
-    double razn_rez, razn;
+    double G,a,diff, diff_Y,Y,step_for_x;
     const double pi=3.14;
-    double start_f;
+    double g_1,g_2, diff_G,f_1,f_2,diff_F,F;
+    float x1,x2,x_mod;
     run=1;
-    int i;
     do {
+        printf("Введите первую границу параметра: \n");
+        scanf("%f", &x_mod);
 
-        printf("Введите первую границу изменения x: \n");
-        scanf("%lf", &x);
+        printf("Введите вторую границу параметра: \n");
+        scanf("%f", &x2);
 
-        printf("Введите вторую границу изменения x: \n");
-        scanf("%lf", &x2);
-
-        printf("Введите a: \n");
+        printf("Введите аргумент: \n");
         scanf("%lf", &a);
 
-        printf("Введите шаг: \n");
-        scanf("%lf", &step);
+        printf("Введите количество шагов: \n");
+        scanf("%i", &kol_step);
+        step_for_x = (x2 - x_mod) / (kol_step -1);
 
         printf("Введите букву выражения, которое xотите вычислить - G,F,Y) \n");
         scanf("%s", &r);
 
         printf("Введите разницу между функциями) \n");
-        scanf("%lf", &razn);
+        scanf("%lf", &diff);
 
-           switch (r) {
-            case 'G':
-                for (x_mod=x; x_mod<=x2; x_mod+=step) {
-                    if (((4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod))>=0.0001) || ((4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod))<=-0.0001)) {
-                        G = -(8 * (12 * (a * a) + 68 * a * x_mod+ 63 * (x_mod * x_mod)))/(4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
-                        printf("%lf\n", G);
-                    }
-                    razn_rez = -(8 * (12 * (a * a) + 68 * a * x_mod+ 63 * (x_mod * x_mod)))/(4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
-                    if ((razn_rez-G)>razn){
-                        step /=2;
-                    }
-                }
-                break;
+            switch (r) {
+                case 'G':
+                    while (kol_step > j) {
+                        g_1 = -(8 * (12 * (a * a) + 68 * a * x_mod + 63 * (x_mod * x_mod)));
+                        g_2 = (4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
+                            if (g_2 <= 0.0000000001 && g_2 >= -0.00000001) {
+                                printf("На ноль делить нельзя");
+                            }
+                            else {
+                                G = g_1 / g_2;
+                                printf("G = %.10lf ", G);
+                                printf("step = %5.0lf ", step_for_x);
+                                x_mod += step_for_x;
+                                diff_G = -(8 * (12 * (a * a) + 68 * a * x_mod + 63 * (x_mod * x_mod))) /
+                                           (4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
+                                printf("diffG = %5.10lf \n ", G);
+                                if (diff < fabs(diff_G - G)) {
+                                    step_for_x /=2;
+                                    x_mod +=step_for_x;
+                                    j-=1;
+                                }
+                            }
+                            j+=1;
+                        }
+                    break;
 
                 case 'F':
-                    for(i = 0; i < start_f; ++i) {
-                        double f_1, f_2;
-                        f_1 = (sin(pi * (40 * (a * a) - 61 * a * x + 7 * (x * x))));
-                        f_2 = (pi * (40 * (a * a) - 61 * a * x + 7 * (x * x)));
-                        if (f_2 == 0.0) {
-                            printf("На ноль делить нельзя");
-                            return 0;
+                    while (kol_step > j) {
+                        f_1 = (sin(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod))));
+                        f_2 = (pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod)));
+                        if (f_2 != 0.0 ) {
+                            F = f_1/f_2;
+                            printf("F = %.20lf", F);
+                            printf("step = %5.15lf", step_for_x);
+                            x_mod += step_for_x;
+                            diff_F = ((sin(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod)))) /(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod))));
+                            printf("diffF = %.20lf \n", diff_F);
+                            if (diff < fabs(diff_F - F)) {
+                                step_for_x /=2;
+                                x_mod += step_for_x;
+                                j-=1;
+                            }
                         }
-                        else {
-                            F = f_1 / f_2;
-                            printf("F = %lf \n", F);
-                            FILE *file;
-                            file = fopen("file_F.txt", "ab+");
-                            fprintf(file, "%lf \n", F);
-                            x = x + step;
-                            start_f = start_f + 1;
-                        }
+                        j+=1;
                     }
-
                     break;
-
                 case 'Y':
-                    for(i = 0; i < start_f; ++i) {
-                        Y = -7 * (a * a) + 40 * a * x + 63 * (x * x) + 1;
-                        printf("Y = %lf \n", Y);
-                        FILE *file;
-                        file = fopen("file_Y.txt", "ab+");
-                        fprintf(file, "%lf \n", Y);
-                        x = x + step;
-                        start_f = start_f + 1;
+                    while (x_mod <= x2) {
+                        Y = -7 * (a * a) + 40 * a * x_mod + 63 * (x_mod * x_mod) + 1;
+                        printf("Y = %lf", Y);
+                        printf("step = %5.15lf", step_for_x);
+                        x_mod += step_for_x;
+                        diff_Y = -7 * (a * a) + 40 * a * x_mod + 63 * (x_mod * x_mod) + 1;
+                        printf("diffY = %.20lf \n", diff_Y);
+                        if (diff < fabs(diff_Y) - abs(Y)) {
+                            step_for_x /= 2;
+                            x_mod+=step_for_x;
+                            j-=1;
+                        }
+                        if (1 > fabs(diff_Y) - abs(Y)) {
+                            step_for_x *= 2;
+                            x_mod+=step_for_x;
+                            j-=1;
+                        }
+                        j+=1;
                     }
-                    break;
+
+                default:
+                    printf("Что-то не то, давай еще раз \n");
             }
 
         printf("Вычислим еще раз? (1-да,2-нет) \n");
-        scanf("%lf", &run);
+        scanf("%i", &run);
 
     }
     while (run==1);
