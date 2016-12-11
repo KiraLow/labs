@@ -3,93 +3,135 @@
 
 int main() {
     char r;
-    double G, F, Y, g_1, g_2;
+    double G, F, Y, G1, G2;
     const double pi = 3.14159265358979;
-    double step_for_x, step_for_a;
-    double x1, x2, a1, a2, x_mod, a_mod;
+    double StepForX, StepForA;
+    double x2, a2, xMod, aMod;
+    double minG = 0, maxG = 0, minF = 0, maxF = 0, minY = 0, maxY = 0;
     double run = 1;
     int kol_step;
     do {
 
-        printf("Введите первую границу для аргумента: \n");
-        scanf("%lf", &x1);
+        printf("Введите первую границу для аргумента: \n");  /*Организовать ввод начального и конечного значений аргумента*/
+        scanf("%lf", &xMod);
 
         printf("Введите вторую границу для аргумента: \n");
         scanf("%lf", &x2);
 
-        printf("Введите первую границу для параметра: \n");
-        scanf("%lf", &a1);
+        printf("Введите первую границу для параметра: \n"); /*...и  параметра*/
+        scanf("%lf", &aMod);
 
         printf("Введите вторую границу для параметра: \n");
         scanf("%lf", &a2);
 
-        printf("Введите количество шагов: \n");
+        printf("Введите количество шагов: \n");  /*количество шагов расчета функций G, F, Y*/
         scanf("%i", &kol_step);
 
-        step_for_x = (x2 - x1) / kol_step;
-        step_for_a = (a2 - a1) / kol_step;
+        StepForX = (x2 - xMod) / kol_step;
+        StepForA = (a2 - aMod) / kol_step;
 
         printf("Введите букву выражения, которое xотите вычислить - G,F,Y) \n");
         scanf("%s", &r);
         int i = 0;
-        int j = 0;
-        x_mod = x1;
-        a_mod = a1;
-        double mass[3][kol_step];
+        int k = 0;
+
+        double mass[255];
+
         switch (r) {
             case 'G':
                 printf("Значение функции ");
                 printf(" Значение X\n");
-                while (x_mod < x2) {
-                    g_1 = -(8 * (12 * (a_mod * a_mod) + 68 * a_mod * x_mod + 63 * (x_mod * x_mod)));
-                    g_2 = (4 * (a_mod * a_mod) + a_mod * x_mod - 5 * (x_mod * x_mod));
-                    if (g_2 != 0) {
-                        G = g_1 / g_2;
-                        printf("%12.0lf ", G);
-                        printf("%10.0lf ", x_mod);
+                while (xMod < x2) {
+                    G1 = -(8 * (12 * (aMod * aMod) + 68 * aMod * xMod + 63 * (xMod * xMod)));
+                    G2 = (4 * (aMod * aMod) + aMod * xMod - 5 * (xMod * xMod));
+                    if (G2 <= 0.00000000001 && G2 >= -0.00000000001) {
+                        printf("На ноль делить нельзя");
+                    } else {
+                        G = G1 / G2;
+                        printf("%12.5lf ", G);
+                        printf("%10.5lf ", xMod);
                         printf("\n");
-                        mass[0][j] = G;
-                        mass[1][j] = x_mod;
-                        mass[2][j] = a_mod;
-                        x_mod += step_for_x;
-                        a_mod += step_for_a;
+                        mass[i] = G;  /*сохранением результатов в массив*/
+                        i += 1;
+                        xMod += StepForX;
+                        aMod += StepForA;
                     }
                 }
-                    break;
-
-                    case 'F':
-                        while (x_mod < x2) {
-                            double f_1, f_2;
-                            f_1 = (sin(pi * (40 * (a_mod * a_mod) - 61 * a_mod * x_mod + 7 * (x_mod * x_mod))));
-                            f_2 = (pi * (40 * (a_mod * a_mod) - 61 * a_mod * x_mod + 7 * (x_mod * x_mod)));
-                            if (f_2 != 0.0) {
-                                F = f_1 / f_2;
-                                printf("F = %lf", F);
-                                printf(" при x = %lf", x_mod );
-                                mass[0][j] = F;
-                                mass[1][j] = x_mod;
-                                mass[2][j] = a_mod;
-                                x_mod += step_for_x;
-                                a_mod += step_for_a;
-                            }
-                        }
-                    break;
-
-                    case 'Y':
-                        while (x_mod < x2) {
-                            Y = -7 * (a_mod * a_mod) + 40 * a_mod * x_mod + 63 * (x_mod * x_mod) + 1;
-                            mass[0][j] = Y;
-                            mass[1][j] = x_mod;
-                            mass[2][j] = a_mod;
-                            printf("Y = %lf", mass[i][j]);
-                            x_mod += step_for_x;
-                            a_mod += step_for_a;
-                        }
-                    break;
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] > maxG) {
+                        maxG = mass[k];
+                    }
                 }
-                printf("Вычислим еще раз? (1-да,2-нет) \n");
-                scanf("%lf", &run);
-    }
-    while (run == 1);
+                printf("Максимальное значение в массиве - %lf\n", maxG);
+
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] < minG) {
+                        minG = mass[k];
+                    }
+                }
+                printf("Минимальное значение в массиве - %lf\n", minG);
+
+                break;
+
+            case 'F':
+                while (xMod < x2) {
+                    double F1, F2;
+                    F1 = (sin(pi * (40 * (aMod * aMod) - 61 * aMod * xMod + 7 * (xMod * xMod))));
+                    F2 = (pi * (40 * (aMod * aMod) - 61 * aMod * xMod + 7 * (xMod * xMod)));
+                    if (F2 >= -0.00000000001 && F2 <= 0.000000001) {
+                        F = F1 / F2;
+                        printf("F = %lf", F);
+                        printf(" при x = %lf", xMod);
+                        mass[i] = F;
+                        i =+ 1;
+                        xMod += StepForX;
+                        aMod += StepForA;
+                    }
+                }
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] > maxF) {
+                        maxF = mass[k];
+                    }
+                }
+                printf("Максимальное значение в массиве - %lf\n", maxF);
+
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] < minF) {
+                        minF = mass[k];
+                    }
+                }
+                printf("Минимальное значение в массиве - %lf\n", minF);
+                break;
+
+            case 'Y':
+                while (xMod < x2) {
+                    Y = -7 * (aMod * aMod) + 40 * aMod * xMod + 63 * (xMod * xMod) + 1;
+                    printf("Y = %lf", Y);
+                    printf(" при x = %lf", xMod);
+                    mass[i] = Y;
+                    i += 1;
+                    xMod += StepForX;
+                    aMod += StepForA;
+                }
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] > maxY) {
+                        maxY = mass[k];
+                    }
+                }
+                printf("Максимальное значение в массиве - %lf\n", maxY);
+
+                for (k = 0; k < i; ++k) {
+                    if (mass[k] < minY) {
+                        minF = mass[k];
+                    }
+                }
+                printf("Минимальное значение в массиве - %lf\n", minY);
+                break;
+            default:
+                printf("Введенное значение не обнаружено, пожалуйста, введите букву выражения, которое хотите вычислить - F,G,Y\n");
+        }
+        printf("Вычислим еще раз? (1-да,2-нет) \n");
+        scanf("%lf", &run);
+    } while (run == 1);
     return 0;
 }
