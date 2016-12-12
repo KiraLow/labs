@@ -82,8 +82,8 @@ int main() {
             printf("не открыли файл, сорян\n");
             exit(1);
         }
-        for (l = -1; l < kol_step; ++l) {
-            fscanf(file1, "%lf\n", &result_value[l]);
+        for (l = 0; l < kol_step; ++l) {
+            fscanf(file1, "%lf", &result_value[l]);
         }
 
         double minG = functionG.mass[0], maxG = functionG.mass[0];
@@ -103,7 +103,7 @@ int main() {
         printf("Минимальное значение в массиве - %lf\n", minG);
 
         for (l = 0; l < i; ++l) {
-            sprintf(temp, "%lf", functionG.mass[l]);
+            sprintf(temp, "%lf", result_value[l]);
             strcat(result, temp);
         }
         printf("*Полученный массив результатов представить в виде одной строки*\n%s\n", result);
