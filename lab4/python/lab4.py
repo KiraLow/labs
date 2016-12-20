@@ -12,7 +12,6 @@ while True:
         StepForX = (x2 - xMod) / KolStep
         StepForA = (a2 - aMod) / KolStep
         choice = str(input("Введите букву функции, которую хотите вычислить "))
-        diff = float(input("введите максимальную разницу между функциями"))
         xList = []
         yList = []
         if choice == "G":
@@ -55,12 +54,6 @@ while True:
                 print("Y =", Y, " при x = ", xMod)
                 xMod += StepForX
                 aMod += StepForA
-                diff_Y = float(-7 * pow(aMod, 2) + 40 * aMod * xMod + 63 * pow(xMod, 2) + 1)
-                if diff < (abs(diff_Y - Y)):
-                    StepForX /= 2
-                    StepForA /= 2
-                    xMod += StepForX
-                    aMod += StepForA
                 j += 1
             pylab.title("График")
             pylab.plot(xList, yList)
