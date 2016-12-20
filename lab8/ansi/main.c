@@ -4,12 +4,13 @@
 
 int myRandForX(int axisX, int axisEnd);
 int myRandForY(int axisY, int axisYend);
+int kolvo(int koldot);
 
 int main() {
     double rad;
     int axisStartForX, axisEnd, axisStartForY;
     double valuesX, valuesY;
-    int i = 0,l = 0, kol_dot;
+    int i = 0,l = 0, kol_dot, m = 0;
 
     printf("Введите параметры поиска\n\nНачальное значение оси: ");
     scanf("%i", &axisStartForX);
@@ -32,20 +33,20 @@ int main() {
         int x[kol_dot];
         int y[kol_dot];
 
-        for (i = 0; i < kol_dot; ++i) {
+        for (i = 0; i < kol_dot; ++i) {                 /*здесь есть функция генерации значений))*/
             x[i] = myRandForX(axisStartForX, axisEnd);
             y[i] = myRandForY(axisStartForY, axisEnd);
         }
+        if (kol_dot == 10) {
+            i = kolvo(kol_dot); /*тот же алгоритм, (250-1) */
+            printf("Координаты случайно выбранной точки [%i,%i]\n", x[i], y[i]);
+        }
 
-        i = 1 + rand() % (kol_dot - 1); /*тот же алгоритм, (250-1) */
-        printf("Координаты случайно выбранной точки [%i,%i]\n", x[i], y[i]);
-
-        i = 0;
-        while (x[i] != 0) {
-            if (x[i] * x[i] + y[i] * y[i] <= rad * rad) {
+        while (x[m] != 0) {
+            if (abs(x[m] * x[m] + y[m] * y[m]) <= rad * rad) {
                 l++; /*+1 к счетчику, принадлежит*/
             }
-            i++;
+            m++;
         }
         printf("Количество точек, принадлежащих окружности составляет: %i\n", l);
 
@@ -58,9 +59,12 @@ int main() {
 }
 
 int myRandForX(int x, int xEnd) {
-    return x + rand() % (xEnd - x);
+    return x + rand() % (abs(xEnd - x));
 }
 
 int myRandForY(int y, int yEnd) {
-    return y + rand() % (yEnd - y);
+    return y + rand() % (abs(yEnd - y));
+}
+int kolvo(int koldot) {
+    return  1 + rand() % (koldot - 1);
 }
