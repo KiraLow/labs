@@ -7,7 +7,6 @@ int main() {
     const double pi = 3.14159265358979;
     double StepForX, StepForA;
     double x2, a2, xMod, aMod;
-    double minG = 0, maxG = 0, minF = 0, maxF = 0, minY = 0, maxY = 0;
     double run = 1;
     int kol_step;
     do {
@@ -27,8 +26,8 @@ int main() {
         printf("Введите количество шагов: \n");  /*количество шагов расчета функций G, F, Y*/
         scanf("%i", &kol_step);
 
-        StepForX = (x2 - xMod) / kol_step;
-        StepForA = (a2 - aMod) / kol_step;
+        StepForX = (x2 - xMod) / (kol_step - 1);
+        StepForA = (a2 - aMod) / (kol_step - 1);
 
         printf("Введите букву выражения, которое xотите вычислить - G,F,Y) \n");
         scanf("%s", &r);
@@ -41,7 +40,7 @@ int main() {
             case 'G':
                 printf("Значение функции ");
                 printf(" Значение X\n");
-                while (xMod < x2) {
+                while (xMod <= x2) {
                     G1 = -(8 * (12 * (aMod * aMod) + 68 * aMod * xMod + 63 * (xMod * xMod)));
                     G2 = (4 * (aMod * aMod) + aMod * xMod - 5 * (xMod * xMod));
                     if (G2 <= 0.00000000001 && G2 >= -0.00000000001) {
@@ -57,6 +56,7 @@ int main() {
                         aMod += StepForA;
                     }
                 }
+                double minG = mass[0], maxG = mass[0];
                 for (k = 0; k < i; ++k) {
                     if (mass[k] > maxG) {
                         maxG = mass[k];
@@ -74,45 +74,49 @@ int main() {
                 break;
 
             case 'F':
-                while (xMod < x2) {
+                while (xMod <= x2) {
                     double F1, F2;
                     F1 = (sin(pi * (40 * (aMod * aMod) - 61 * aMod * xMod + 7 * (xMod * xMod))));
                     F2 = (pi * (40 * (aMod * aMod) - 61 * aMod * xMod + 7 * (xMod * xMod)));
-                    if (F2 >= -0.00000000001 && F2 <= 0.000000001) {
+                    if (F2 >= -0.000000000000001 && F2 <= 0.00000000000001) {
+                        printf("На ноль не делим");
+                    } else {
                         F = F1 / F2;
-                        printf("F = %lf", F);
-                        printf(" при x = %lf", xMod);
+                        printf("F = %.15lf", F);
+                        printf("\tпри x = %lf\n", xMod);
                         mass[i] = F;
                         i =+ 1;
                         xMod += StepForX;
                         aMod += StepForA;
                     }
                 }
+                double maxF = mass[0];
                 for (k = 0; k < i; ++k) {
                     if (mass[k] > maxF) {
                         maxF = mass[k];
                     }
                 }
-                printf("Максимальное значение в массиве - %lf\n", maxF);
-
+                printf("Максимальное значение в массиве - %.20lf\n", maxF);
+                double minF = mass[0];
                 for (k = 0; k < i; ++k) {
                     if (mass[k] < minF) {
                         minF = mass[k];
                     }
                 }
-                printf("Минимальное значение в массиве - %lf\n", minF);
+                printf("Минимальное значение в массиве - %.20lf\n", minF);
                 break;
 
             case 'Y':
                 while (xMod < x2) {
                     Y = -7 * (aMod * aMod) + 40 * aMod * xMod + 63 * (xMod * xMod) + 1;
                     printf("Y = %lf", Y);
-                    printf(" при x = %lf", xMod);
+                    printf("\tпри x = %lf\n", xMod);
                     mass[i] = Y;
                     i += 1;
                     xMod += StepForX;
                     aMod += StepForA;
                 }
+                double minY = mass[0], maxY = mass[0];
                 for (k = 0; k < i; ++k) {
                     if (mass[k] > maxY) {
                         maxY = mass[k];
@@ -122,7 +126,7 @@ int main() {
 
                 for (k = 0; k < i; ++k) {
                     if (mass[k] < minY) {
-                        minF = mass[k];
+                        minY = mass[k];
                     }
                 }
                 printf("Минимальное значение в массиве - %lf\n", minY);
