@@ -15,13 +15,13 @@ int main(void)
     width = BMP_GetWidth( bmp );
     height = BMP_GetHeight( bmp );
 
-    for ( x = 0 ; x < width ; ++x )
+    for ( x = 0 ; x < width-2 ; ++x )
     {
-        for ( y = 0 ; y < height ; ++y )
+        for ( y = 0 ; y < height-2 ; ++y )
         {
             /* Get pixel's RGB values */
             BMP_GetPixelRGB( bmp, x, y, &r, &g, &b );
-            s = (r + g + b) / 3;
+            s = bmp[x][y]
             /* Invert RGB values */
             BMP_SetPixelRGB( bmp, x, y, s, s, s );
         }
