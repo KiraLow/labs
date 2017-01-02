@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/imageload_template.dir/main.c.o CMakeFiles/imageload_template.dir/qdbmp.c.o  -o imageload_template 
