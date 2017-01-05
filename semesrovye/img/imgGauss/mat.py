@@ -1,5 +1,4 @@
-from PIL import Image, ImageDraw  # Подключим необходимые библиотеки.
-import math
+from PIL import Image, ImageDraw
 
 image = Image.open("//home//vlad//Prg//semesrovye//img//imgGauss//lena.jpg")  # Открываем изображение.
 draw = ImageDraw.Draw(image)  # Создаем инструмент для рисования.
