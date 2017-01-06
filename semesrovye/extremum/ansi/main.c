@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <math.h>
+
 double F(double x)
 {
-    return  x*x*4+x*2;
+    double Fun;
+    Fun = x*x*4+x*2;
+    return  Fun;
 }
 int main() {
     double a,b,f1,f2,e,x,x1,x2;
@@ -25,7 +29,7 @@ int main() {
         else
             a=x;
     }
-    while (b-a<e);
-    printf("результат = %lf \n", F(a));
-
+    while (fabs(a - b) > e);
+    printf("результат = %lf \n", b);
+    return 0;
 }

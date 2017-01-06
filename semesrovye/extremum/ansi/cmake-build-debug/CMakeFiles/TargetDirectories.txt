@@ -1,0 +1,3 @@
+/home/vlad/Prg/semesrovye/extremum/ansi/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vlad/Prg/semesrovye/extremum/ansi/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/vlad/Prg/semesrovye/extremum/ansi/cmake-build-debug/CMakeFiles/semestr2.dir

@@ -1,0 +1,1 @@
+/usr/bin/cc   -std=c90 -g   CMakeFiles/semestr2.dir/main.c.o  -o semestr2 -lm 
