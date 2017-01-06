@@ -15,6 +15,7 @@ for i in range(height - 2):
         Gy = ((2 * C[i + 1, j + 2][0] + C[i, j + 2][0] + C[i + 2, j + 2][0]) - (2 * C[i + 1, j][0] + C[i, j][0] + C[i + 2, j][0]))
         G = int(math.sqrt(Gx * Gx + Gy * Gy))
         draw.point((i, j), (G, G, G))
-  #ebanoe govniche
-image.save("//home//vlad//Prg//semesrovye//img//sobel//lena_sobol.jpg", "JPEG")
+        Q = math.atan(Gx / Gy)
+  #v2
+image.save("//home//vlad//Prg//semesrovye//img//kanny(&)//lena_kanny.jpg", "JPEG")
 del draw
