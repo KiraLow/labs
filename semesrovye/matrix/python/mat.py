@@ -1,26 +1,24 @@
-from PIL import Image, ImageDraw  # Подключим необходимые библиотеки.
-import math
+import random
+A = [0,0,0,0,0,0,0,0,0]
+B = [0,0,0,0,0,0,0,0,0]
 
-image = Image.open("//home//vlad//Prg//semesrovye//img//imgGauss//lena.jpg")  # Открываем изображение.
-draw = ImageDraw.Draw(image)  # Создаем инструмент для рисования.
-width = image.size[0]  # Определяем ширину.
-height = image.size[1]  # Определяем высоту.
-pix = image.load()  # Выгружаем значения пикселей.
-s = []
-rad = int(input())
-i = rad+1
-while i < width - (rad+1):
-    j=rad+1
-    while j < height - (rad+1):
-        s1 = (pix[i - rad, j - rad][0] + pix[i - rad, j][0] + pix[i - rad, j + rad][0] + pix[i, j - rad][0] + pix[i, j][0] +
-              pix[i, j + rad][0] + pix[i + rad, j - rad][0] + pix[i + rad, j][0] + pix[i + rad, j + rad][0]) // 9
-        s2 = (pix[i - rad, j - rad][1] + pix[i - rad, j][1] + pix[i - rad, j + rad][1] + pix[i, j - rad][1] + pix[i, j][1] +
-              pix[i, j + rad][1] + pix[i + rad, j - rad][1] + pix[i + rad, j][1] + pix[i + rad, j + rad][1]) // 9
-        s3 = (pix[i - rad, j - rad][2] + pix[i - rad, j][2] + pix[i - rad, j + rad][2] + pix[i, j - rad][2] + pix[i, j][2] +
-              pix[i, j + rad][2] + pix[i + rad, j - rad][2] + pix[i + rad, j][2] + pix[i + rad, j + rad][2]) // 9
-        draw.point((i, j), (s1, s2, s3))
-        j += 1
-    i += 1
+for i in range(9):
+    A[i] = int(random.uniform(-99, 99))
+    B[i] = int(random.uniform(-99, 99))
+print("\nПервая матрица:\n")
+for i in range(3):
+    print(A[i], A[i+1], A[i+2])
+print("\nВторая матрица:\n")
+for i in range(3):
+    print(B[i], B[i+1], B[i+2])
 
-image.save("//home//vlad//Prg//semesrovye//img//imgGauss//lena_res.jpg", "JPEG")
-del draw
+
+C = [0,0,0,0,0,0,0,0,0]
+for k in range(3):
+    for j in range(3):
+        C[k * 3 + j] = 0
+        for i in range(3):
+            C[k * 3 + j] += A[k * 3 + i] * B[i * 3 + j]
+print("\nРезультат умножения:\n")
+for i in range(0, 9, 3):
+    print(C[i], '\t',C[i+1], '\t',C[i+2])
