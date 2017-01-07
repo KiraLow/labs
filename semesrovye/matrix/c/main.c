@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -25,15 +26,13 @@ int main(int argc, char *argv[])
 /* Запись в двумерные массивы */
 
     for (i = 0; i < a; i++) {
-        printf("Введите строку #%d\n", i + 1);
         for(j = 0; j < b; j++) {
-            scanf("%2i", &matrix_one[i][j]); /* считываем сначала столбца, потом строки */
+            matrix_one[i][j] = rand() % 100; /* считываем сначала столбца, потом строки */
         }
     }
     for(i = 0; i < c; i++){
-        printf("Введите строку #%d\n",i+1);
         for(j = 0; j < d; j++){
-            scanf("%2i",&matrix_two[i][j]);
+            matrix_two[i][j] = rand() % 100;
         }
     }
     /* Вывод матриц на экран */
@@ -68,12 +67,12 @@ int main(int argc, char *argv[])
             }
             for(i = 0; i < a; i++){
                 for(j = 0; j < d; j++){
-                    printf("%6.0i",matrix_mul[i][j]);
+                    printf("%i\t",matrix_mul[i][j]);
                 }
                 printf("\n");
             }
         time = clock() - time;
-        printf("%f", (double)time/CLOCKS_PER_SEC); //время выполнения
+        printf("%li", time/CLOCKS_PER_SEC);
     }
     else{
         printf("\nМатрицы не могут быть умножены.\n");

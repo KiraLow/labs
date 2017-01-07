@@ -1,0 +1,1 @@
+/usr/bin/cc   -std=c90  -g   CMakeFiles/matrix.dir/main.c.o  -o matrix -lm 

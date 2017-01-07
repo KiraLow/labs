@@ -1,0 +1,3 @@
+/home/vlad/Prg/semesrovye/saxpy/ansi/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vlad/Prg/semesrovye/saxpy/ansi/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/vlad/Prg/semesrovye/saxpy/ansi/cmake-build-debug/CMakeFiles/ansi.dir
