@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vlad/Prg/semesrovye/img/imgGauss/ansi/main.c
+qdbmp.h
+/home/vlad/Prg/semesrovye/img/imgGauss/ansi/qdbmp.h
+stdio.h
+-
+math.h
+-
+
+/home/vlad/Prg/semesrovye/img/imgGauss/ansi/qdbmp.c
+qdbmp.h
+/home/vlad/Prg/semesrovye/img/imgGauss/ansi/qdbmp.h
+stdlib.h
+-
+string.h
+-
+
+/home/vlad/Prg/semesrovye/img/imgGauss/ansi/qdbmp.h
+stdio.h
+-
+
