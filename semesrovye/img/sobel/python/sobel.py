@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 import math
 
-image = Image.open("//home//vlad//Prg//semesrovye//img//imgGauss//lena.jpg")  # Открываем изображение.
+image = Image.open("//home//vlad//Prg//semesrovye//img//sobel//python//lena.jpg")  # Открываем изображение.
 draw = ImageDraw.Draw(image)  # Создаем инструмент для рисования.
 width = image.size[0]  # Определяем ширину.
 height = image.size[1]  # Определяем высоту.
@@ -16,5 +16,5 @@ for i in range(height - 2):
         G = int(math.sqrt(Gx * Gx + Gy * Gy))
         draw.point((i, j), (G, G, G))
   #ebanoe govniche
-image.save("//home//vlad//Prg//semesrovye//img//sobel//lena_sobol.jpg", "JPEG")
+image.save("//home//vlad//Prg//semesrovye//img//sobel//python//lena_sobol.jpg", "JPEG")
 del draw
