@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vlad/Prg/semesrovye/saxpy/ansi/main.c
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+omp.h
+-
+
