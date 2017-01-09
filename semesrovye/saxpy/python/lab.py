@@ -19,10 +19,10 @@ values_int = []
 values_float =[]
 n = 500
 while i < 500:
-    xInt[i:] = np.random.random_integers(0, 100, 1)
-    yInt[i:] = np.random.random_integers(0, 100, 1)
-    xFloat[i:] = np.random.sample(1)
-    yFloat[i:] = np.random.sample(1)
+    xInt[i:] = np.random.randint(0, 100, 1)
+    yInt[i:] = np.random.randint(0, 100, 1)
+    xFloat[i:] = np.random.uniform(0, 100, 1)
+    yFloat[i:] = np.random.uniform(0, 100, 1)
     i += 1
 i = 0
 start = time.time()
