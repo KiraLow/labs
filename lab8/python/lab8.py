@@ -10,11 +10,11 @@ i = 0
 t = 0
 kolDot = 100
 rad = float(input("Введите радиус"))
-f = open('//home//iarven//prog//test.txt', 'w+')
+f = open('/home/vlad/Prg/lab8/python/test.txt', 'w+')
 
 
 def AccessoryCircle():
-    m =0
+    m = 0
     l = 0
     while m != kolDot:
         if sqrt((pow(x1 - x[m], 2)) + (pow(y1 - y[m], 2))) <= rad:
@@ -55,6 +55,4 @@ plt.plot(x, y, '.',
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Генерация точек')
-circle = plt.Circle((x1, y1), rad, Fill=False)
-plt.gcf().gca().add_artist(circle)
 plt.show()
