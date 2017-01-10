@@ -3,8 +3,9 @@
 
 int main() {
     int mas[10];
-    int i, j, l;
+    int i, j, l, d1,value,N;
     int dot[12];
+    scanf("%i", &N);
     for(i = 0; i < 10; i++) {
         mas[i] = rand() % 9 + 1;
     }
@@ -17,7 +18,9 @@ int main() {
             dot[l] = mas[l];
             printf("%i", dot[l]);
         } else {
-            dot[l] = (mas[l - 1] + mas[l] + mas[l+1]) / 3;
+            d1 = (mas[l - 1] + mas[l] + mas[l+1]) / 3;
+            value = 2 / N+1;
+            dot[l] = d1 * mas[l] + (1 - value) * d1;
             printf("%i", dot[l]);
         }
     }
