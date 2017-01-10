@@ -1,103 +1,105 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 
-int main()
-{
-    int run,kol_step,j=0;
+int main() {
+    double G, F, Y, a, x1, x2, b, min_value, max_value;
+    int i, j;
     char r;
-    double G,a,diff, diff_Y,Y,step_for_x;
-    const double pi=3.14;
-    double g_1,g_2, diff_G,f_1,f_2,diff_F,F;
-    float x1,x2,x_mod;
-    run=1;
-    do {
-        printf("Введите первую границу параметра: \n");
-        scanf("%f", &x_mod);
+    const double pi = 3.14;
+    double pr = 1;
 
-        printf("Введите вторую границу параметра: \n");
-        scanf("%f", &x2);
+    nachalo:
 
-        printf("Введите аргумент: \n");
-        scanf("%lf", &a);
+    printf("%s", "Введите  x1: ");
+    scanf("%lf", &x1);
 
-        printf("Введите количество шагов: \n");
-        scanf("%i", &kol_step);
-        step_for_x = (x2 - x_mod) / (kol_step -1);
+    printf("%s", "Введите x2 ");
+    scanf("%lf", &x2);
 
-        printf("Введите букву выражения, которое xотите вычислить - G,F,Y) \n");
-        scanf("%s", &r);
+    printf("%s", "Введите a: ");
+    scanf("%lf", &a);
 
-        printf("Введите разницу между функциями) \n");
-        scanf("%lf", &diff);
+    printf("%s", "Введите параметр шага  ");
+    scanf("%lf", &b);
 
-            switch (r) {
-                case 'G':
-                    while (kol_step > j) {
-                        g_1 = -(8 * (12 * (a * a) + 68 * a * x_mod + 63 * (x_mod * x_mod)));
-                        g_2 = (4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
-                            if (g_2 <= 0.0000000001 && g_2 >= -0.00000001) {
-                                printf("На ноль делить нельзя");
-                            }
-                            else {
-                                G = g_1 / g_2;
-                                printf("G = %.5lf ", G);
-                                printf("step = %5.10lf ", step_for_x);
-                                x_mod += step_for_x;
-                                diff_G = -(8 * (12 * (a * a) + 68 * a * x_mod + 63 * (x_mod * x_mod))) /
-                                           (4 * (a * a) + a * x_mod - 5 * (x_mod * x_mod));
-                                printf("diffG = %5.5lf \n ", diff_G);
-                                if (diff < fabs(diff_G - G)) {
-                                    step_for_x /=2;
-                                    x_mod +=step_for_x;
-                                    j-=1;
-                                }
-                            }
-                            j+=1;
-                        }
-                    break;
+    double mas[200];
+    j = 0;
+    max_value = 0;
+    min_value = 0;
+    printf("Введите букву выражения, которое хотите вычислить - G,F,Y) \n");
+    scanf ("%s", &r);
 
-                case 'F':
-                    while (kol_step > j) {
-                        f_1 = (sin(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod))));
-                        f_2 = (pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod)));
-                        if (f_2 != 0.0 ) {
-                            F = f_1/f_2;
-                            printf("F = %.15lf", F);
-                            printf("\tstep = %5.7lf", step_for_x);
-                            x_mod += step_for_x;
-                            diff_F = ((sin(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod)))) /(pi * (40 * (a * a) - 61 * a * x_mod + 7 * (x_mod * x_mod))));
-                            printf("\tdiffF = %.15lf \n", diff_F);
-                            if (diff < fabs(diff_F - F)) {
-                                step_for_x /=2;
-                                x_mod += step_for_x;
-                                j-=1;
-                            }
-                        }
-                        j+=1;
+    switch (r) {
+        case 'G':
+            while (x1 <= x2) {
+                if ((45 * (pow(a, 2)) - 29 * a * x1 + 4 * (pow(x1, 2))) != 0)
+                    G = -(16 * ((pow(a, 2) + 24 * a * x1 - 27 * (pow(x1, 2))))) /
+                        (45 * (pow(a, 2)) - 29 * a * x1 + 4 * (pow(x1, 2)));
+                    printf("X = %.3lf \t| Y = %.3lf\n", x1, G);
+                    x1 = x1 + b;
+                    mas[j] = G;
+                    if (j <= 0.000001 && j >= -0.000001) {
+                        max_value = G;
+                        min_value = G;
                     }
-                    break;
-                case 'Y':
-                    while (x_mod <= x2) {
-                        Y = -7 * (a * a) + 40 * a * x_mod + 63 * (x_mod * x_mod) + 1;
-                        printf("Y = %lf", Y);
-                        printf("\tstep = %5.15lf", step_for_x);
-                        x_mod += step_for_x;
-                        diff_Y = -7 * (a * a) + 40 * a * x_mod + 63 * (x_mod * x_mod) + 1;
-                        printf("\tdiffY = %lf \n", diff_Y);
-                        if (diff < fabs(diff_Y - Y)) {
-                            step_for_x /= 2;
-                            x_mod+=step_for_x;
-                            j-=1;
-                        }
-                        j+=1;
-                    }
-                default:
-                    printf("Что-то не то, давай еще раз \n");
+                    if (G > max_value) max_value = mas[j];
+                    if (G < min_value) min_value = mas[j];
+                    j += 1;
             }
-        printf("Вычислим еще раз? (1-да,2-нет) \n");
-        scanf("%i", &run);
+            printf(" Максимальное значение  = %9.3lf\n Минимальное значение = %9.3lf\n", max_value, min_value);
+            break;
+
+        case 'F':
+            while (x1 <= x2) {
+                F = -(atan(pi * (10 * (a * a) + 13 * a * x1 - 30 * (x1 * x1))));
+                printf("%f\n", F);
+                x1 = x1 + b;
+                mas[j] =F;
+                j += 1;
+                j = 0;
+                max_value = mas[0];
+                min_value = mas[0];
+                j += 1;
+                if (mas[j] > max_value)
+                    max_value = mas[j];
+                if (mas[j] < min_value)
+                    min_value = mas[j];
+
+                printf(" Максимальное значение  = %9.3lf\n Минимальное значение = %9.3lf\n", max_value, min_value);
+
+            }
+
+            break;
+
+        case 'Y':
+            while (x1 <= x2) {
+                Y = (log(2 * pow(a, 2) + 19 * a * x1 + 9 * pow(x1, 2) + 1)) / log(10);
+                printf("%f\n", Y);
+                x1 = x1 + b;
+                mas[j] = Y;
+                j += 1;
+                j = 0;
+                max_value = mas[0];
+                min_value = mas[0];
+                j += 1;
+                if (mas[j] > max_value)
+                    max_value = mas[j];
+                if (mas[j] < min_value)
+                    min_value = mas[j];
+
+                printf(" Максимальное значение  = %9.3lf\n Минимальное значение = %9.3lf\n", max_value, min_value);
+
+            }
+
+            break;
+
+        default:
+            printf("ne verno vvedena function \n");
+
     }
-    while (run==1);
+    printf("Вычислим еще раз? (1-да,2-нет) \n");
+    scanf("%lf", &pr);
+    if (pr == 1)
+        goto nachalo;
     return 0;
 }

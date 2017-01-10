@@ -1,0 +1,1 @@
+/usr/bin/cc   -std=c90 -g   CMakeFiles/lab2.dir/main.c.o  -o lab2 -lm 

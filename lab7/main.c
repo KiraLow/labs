@@ -17,7 +17,7 @@ int main() {
         double mass[100];
     }functionG;
     FILE *file;
-    file = fopen("//home//iarven//result1.txt", "w+");
+    file = fopen("/home/vlad/Prg/lab7/result1.txt", "w+");
     do {
         printf("Введите первую границу для аргумента: \n");  /*Организовать ввод начального и конечного значений аргумента*/
         scanf("%s", rec);
@@ -76,7 +76,7 @@ int main() {
         printf("\n");
         fclose(file);
         FILE *file1;
-        file1 = fopen("//home//iarven//result1.txt", "r+");
+        file1 = fopen("/home/vlad/Prg/lab7/result1.txt", "r+");
         if (file1 == 0)
         {
             printf("не открыли файл, сорян\n");
