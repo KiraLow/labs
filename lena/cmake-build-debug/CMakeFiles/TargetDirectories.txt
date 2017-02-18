@@ -1,3 +1,0 @@
-/home/vlad/Prg/lena/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/vlad/Prg/lena/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/vlad/Prg/lena/cmake-build-debug/CMakeFiles/lena.dir
