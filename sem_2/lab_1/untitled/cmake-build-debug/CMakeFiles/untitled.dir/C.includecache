@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vlad/Prg/sem_2/lab_1/untitled/main.c
+qdbmp.h
+/home/vlad/Prg/sem_2/lab_1/untitled/qdbmp.h
+math.h
+-
+stdio.h
+-
+
+/home/vlad/Prg/sem_2/lab_1/untitled/qdbmp.h
+qdbmp.h
+/home/vlad/Prg/sem_2/lab_1/untitled/qdbmp.h
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+

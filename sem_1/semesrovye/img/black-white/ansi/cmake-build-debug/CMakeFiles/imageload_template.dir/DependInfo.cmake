@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/vlad/Prg/semesrovye/img/black-white/ansi/main.c" "/home/vlad/Prg/semesrovye/img/black-white/ansi/cmake-build-debug/CMakeFiles/imageload_template.dir/main.c.o"
-  "/home/vlad/Prg/semesrovye/img/black-white/ansi/qdbmp.c" "/home/vlad/Prg/semesrovye/img/black-white/ansi/cmake-build-debug/CMakeFiles/imageload_template.dir/qdbmp.c.o"
+  "/home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi/main.c" "/home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi/cmake-build-debug/CMakeFiles/imageload_template.dir/main.c.o"
+  "/home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi/qdbmp.c" "/home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi/cmake-build-debug/CMakeFiles/imageload_template.dir/qdbmp.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

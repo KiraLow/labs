@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/vlad/Prg/semesrovye/img/black-white/ansi/main.c" "/home/vlad/Prg/semesrovye/img/black-white/ansi/cmake-build-debug/CMakeFiles/ansi.dir/main.c.o"
+  "/home/vlad/Prg/sem_2/lab_1/1_5/main.c" "/home/vlad/Prg/sem_2/lab_1/1_5/cmake-build-debug/CMakeFiles/1_5.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

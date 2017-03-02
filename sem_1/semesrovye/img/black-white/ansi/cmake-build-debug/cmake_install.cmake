@@ -1,4 +1,4 @@
-# Install script for directory: /home/vlad/Prg/semesrovye/img/black-white/ansi
+# Install script for directory: /home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/vlad/Prg/semesrovye/img/black-white/ansi/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/vlad/Prg/sem_1/semesrovye/img/black-white/ansi/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
